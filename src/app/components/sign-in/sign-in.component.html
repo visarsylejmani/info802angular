@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row">
+      <div class="col-6">
+        <h1>Bonjour,</h1>
+        <h1>MarketPlace802</h1>
+      </div>
+      <div class="col-6">
+        <h1>Se connecter</h1>
+        <form>
+          <div class="mb-3">
+            <label for="inputEmail" class="form-label">Email</label>
+            <input type="email" class="form-control" id="inputEmail" #inputEmail required>
+            <!--aria-describedby="emailHelp"-->
+            <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
+          </div>
+          <div class="mb-3">
+            <label for="inputPassword" class="form-label">Mot de passe</label>
+            <input type="password" class="form-control" id="inputPassword" #inputPassword required>
+          </div>
+          <div class="mb-3">
+            <span class="link-primary" routerLink="/forgot-password">Mot de passe oublié?</span>
+          </div>
+          <!--<div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="check">
+          <label class="form-check-label" for="check">Rester connecter</label>
+        </div>-->
+          <button type="button" class="btn btn-primary" (click)="authService.SignIn(inputEmail.value, inputPassword.value)">Se connecter</button>
+        </form>
+        <div class="mb-3">
+            <span>Je n'ai pas de compte?<span class="link-primary" routerLink="/register-user"> S'inscrire</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  

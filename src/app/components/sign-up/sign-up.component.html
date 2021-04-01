@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <div class="col-6 align-self-center">
+            <h1>S'inscrire</h1>
+            <form>
+                <div class="mb-3">
+                    <label for="inputDisplayName" class="form-label">Nom d'utilisateur</label>
+                    <input type="text" class="form-control" id="inputDisplayName" #inputDisplayName required>
+                    <!--aria-describedby="emailHelp"-->
+                    <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
+                </div>
+                <div class="mb-3">
+                    <label for="inputEmail" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="inputEmail" #inputEmail required>
+                    <!--aria-describedby="emailHelp"-->
+                    <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
+                </div>
+                <div class="mb-3">
+                    <label for="inputPassword" class="form-label">Mot de passe</label>
+                    <input type="password" class="form-control" id="inputPassword" #inputPassword required>
+                </div>
+                <!--<div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="check">
+                <label class="form-check-label" for="check">Rester connecter</label>
+                </div>-->
+                <button type="button" class="btn btn-primary" (click)="authService.SignUp(inputDisplayName.value,inputEmail.value, inputPassword.value)">S'inscrire</button>
+            </form>
+            <div class="mb-3">
+                <span>J'ai déjà un compte?<span class="link-primary" routerLink="/sign-in"> Se connecter</span></span>
+            </div>
+        </div>
+    </div>
+</div>
