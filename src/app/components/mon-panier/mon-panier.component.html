@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/acheter-produit">
+        <img src="../../../assets/marketplace.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+        MarketPlace802
+      </a>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/acheter-produit">Acheter</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/vendre-produit">Vendre</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/mon-panier">Mon Panier</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/dashboard">Mes Donnes</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item">
+              <a class="nav-link" (click)="authService.SignOut()">Se deconnecter</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Sidebar navigation -->
+  <div class="container">
+    <div class="row">
+      <h1>Mon Panier</h1>
+    </div>
+  </div>
