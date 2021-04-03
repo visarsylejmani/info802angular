@@ -34,3 +34,10 @@ jobs:
         password: 4UaXcZqcAUfdkp=5LHBvCsM90AUMN6z8
         # Container registry server url
         login-server: angularinfo802.azurecr.io
+
+    - name: App Service Web App Build Action
+      uses: Azure/appservice-build@v2
+     
+
+
+
