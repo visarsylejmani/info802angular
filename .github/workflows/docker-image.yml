@@ -24,3 +24,13 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: rootvisar/angularinfo802
         tag_with_ref: true
+        
+    - name: Azure Container Registry Login
+      uses: Azure/docker-login@v1
+      with:
+        # Container registry username
+        username: AngularInfo802
+        # Container registry password
+        password: 4UaXcZqcAUfdkp=5LHBvCsM90AUMN6z8
+        # Container registry server url
+        login-server: angularinfo802.azurecr.io
