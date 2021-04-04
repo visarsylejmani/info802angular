@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage'
 import { environment } from '../environments/environment';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
@@ -35,6 +36,7 @@ import { MonPanierComponent } from './components/mon-panier/mon-panier.component
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    AngularFireStorageModule,
     BrowserModule,
     AppRoutingModule
   ],

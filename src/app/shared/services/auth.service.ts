@@ -9,7 +9,7 @@ import { Router } from "@angular/router";
 })
 
 export class AuthService {
-  userData: any; // Save logged in user data
+  public userData: User; // Save logged in user data
 
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
@@ -30,6 +30,7 @@ export class AuthService {
       }
     })
   }
+  
 
   // Sign in with email/password
   SignIn(email, password) {
@@ -42,6 +43,7 @@ export class AuthService {
       }).catch((error) => {
         window.alert(error.message)
       })
+      
   }
 
   // Sign up with email/password
@@ -81,6 +83,10 @@ export class AuthService {
   // Returns true when user is looged in and email is verified
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
+    if(user.emailVerified == false)
+    {
+      window.alert("Verifiez votre mail")
+    }
     return (user !== null && user.emailVerified !== false) ? true : false;
   }
 
