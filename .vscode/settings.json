@@ -1,4 +1,4 @@
 {
-    "appService.defaultWebAppToDeploy": "/subscriptions/012ad345-4508-4a68-838e-e4bab501d62d/resourceGroups/VisarGR/providers/Microsoft.Web/sites/angular802",
+    "appService.defaultWebAppToDeploy": "",
     "appService.deploySubpath": "dist\\my-app"
 }
