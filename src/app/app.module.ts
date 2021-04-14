@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +21,7 @@ import { AuthService } from "./shared/services/auth.service";
 import { AcheterProduitComponent } from './components/acheter-produit/acheter-produit.component';
 import { VendreProduitComponent } from './components/vendre-produit/vendre-produit.component';
 import { MonPanierComponent } from './components/mon-panier/mon-panier.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,10 @@ import { MonPanierComponent } from './components/mon-panier/mon-panier.component
     AngularFirestoreModule,
     AngularFireStorageModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

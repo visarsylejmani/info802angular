@@ -31,6 +31,8 @@
   <div class="row" *ngIf="authService.userData as user">
     <div class="col-md-12">
       <div class="media-body">
+        <img src={{user.photoURL}}>
+        <h1><strong>{{user.photoURL}}</strong></h1>
         <h1><strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h1>
         <p>User ID: <strong>{{user.uid}}</strong></p>
         <p>Email: <strong>{{user.email}}</strong></p>

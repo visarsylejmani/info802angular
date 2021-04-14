@@ -14,8 +14,8 @@ export class MonPanierComponent implements OnInit {
   monPanier = new Array<Product>();
   constructor(
     public afs: AngularFirestore,
-    public authService:AuthService,
-    public panier:PanierService,
+    public authService: AuthService,
+    public panier: PanierService,
     ) { }
 
   ngOnInit(): void {
@@ -23,7 +23,6 @@ export class MonPanierComponent implements OnInit {
   }
 
   acheter(){
-
   }
 
   vide(){

@@ -2,22 +2,22 @@
     <div class="row">
         <div class="col-6 align-self-center">
             <h1>S'inscrire</h1>
-            <form>
+            <form [formGroup]="SignUpForm" (ngSubmit)="onSignUp()">
                 <div class="mb-3">
                     <label for="inputDisplayName" class="form-label">Nom d'utilisateur</label>
-                    <input type="text" class="form-control" id="inputDisplayName" #inputDisplayName required>
+                    <input type="text" class="form-control" id="inputDisplayName" formControlName="inputDisplayName">
                     <!--aria-describedby="emailHelp"-->
                     <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
                 </div>
                 <div class="mb-3">
                     <label for="inputEmail" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="inputEmail" #inputEmail required>
+                    <input type="email" class="form-control" id="inputEmail" formControlName="inputEmail">
                     <!--aria-describedby="emailHelp"-->
                     <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
                 </div>
                 <div class="mb-3">
                     <label for="inputPassword" class="form-label">Mot de passe</label>
-                    <input type="password" class="form-control" id="inputPassword" #inputPassword required>
+                    <input type="password" class="form-control" id="inputPassword" formControlName="inputPassword">
                 </div>
                 <!--<div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="check">

@@ -36,9 +36,6 @@ export class AuthService {
   SignIn(email, password) {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
-        this.ngZone.run(() => {
-          this.router.navigate(['acheter-produit']);
-        });
         this.SetUserData(result.user);
       }).catch((error) => {
         window.alert(error.message)
@@ -50,7 +47,10 @@ export class AuthService {
   SignUp(name, email, password) {
     return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
-        result.user.updateProfile({displayName:name});
+        result.user.updateProfile({
+            displayName:name,
+            photoURL:"../../../../assets/user.png"
+          });
         /* Call the SendVerificaitonMail() function when new user sign 
         up and returns promise */
         this.SendVerificationMail();
@@ -81,13 +81,16 @@ export class AuthService {
   }
 
   // Returns true when user is looged in and email is verified
-  get isLoggedIn(): boolean {
+  isLoggedIn(){
     const user = JSON.parse(localStorage.getItem('user'));
-    if(user.emailVerified == false)
-    {
+    var res = false;
+    if(user !== null){
+        res = user.emailVerified;
+    }
+    if(res == null){
       window.alert("Verifiez votre mail")
     }
-    return (user !== null && user.emailVerified !== false) ? true : false;
+    return res;
   }
 
   // Auth logic to run auth providers
@@ -113,7 +116,7 @@ export class AuthService {
       email: user.email,
       displayName: user.displayName,
       photoURL: user.photoURL,
-      emailVerified: user.emailVerified
+      emailVerified: user.emailVerified,
     }
     return userRef.set(userData, {
       merge: true
