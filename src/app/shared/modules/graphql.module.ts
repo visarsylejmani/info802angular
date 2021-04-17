@@ -14,14 +14,13 @@ const httpLink = createHttpLink({
 
 const headers = {
   'Origin': '*',
-  'Sec-Fetch-Dest': 'empty',
-  'Sec-Fetch-Mode': 'no-cors',
-  'Sec-Fetch-Site': 'cross-site',
+  'Access-Control-Allow-Origin': 'https://info802.visarsylejmani.com/'
+
 }
 const link = setContext(() => {
   return {
     fetchOptions: {
-
+      mode:'cors'
     },
     headers: headers,
     fetch,
