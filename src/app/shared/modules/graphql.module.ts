@@ -9,21 +9,31 @@ const uri = 'https://graphqlinfo802.azurewebsites.net/api'; // <-- add the URL o
 
 const httpLink = createHttpLink({
   uri: uri,
-
 });
 
 const headers = {
   'Origin': '*',
   'Access-Control-Allow-Origin': 'https://info802.visarsylejmani.com/'
 
+  
+}
+const enchancedFetch = (url, init) => {
+  return fetch(url, {
+      ...init,
+      headers: {
+          ...init.headers,
+          'Access-Control-Allow-Origin': '*',
+      },
+  }).then(response => response)
 }
 const link = setContext(() => {
   return {
+    credentials: 'include',
     fetchOptions: {
       mode:'cors'
     },
     headers: headers,
-    fetch,
+    fetch: enchancedFetch,
   }
 });
 export function createApollo(): ApolloClientOptions<any> {
