@@ -26,7 +26,8 @@ export class SignInComponent implements OnInit {
   onSignIn() {
     this.authService.SignIn(this.SignInForm.value["inputEmail"],this.SignInForm.value["inputPassword"]);
     this.SignInForm.reset();
-    this.router.navigate(['acheter-produit']);
+    var tries = 0;
+    setTimeout(()=>this.router.navigate(['acheter-produit']),500);    
   }
 
 }

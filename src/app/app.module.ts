@@ -22,6 +22,8 @@ import { AcheterProduitComponent } from './components/acheter-produit/acheter-pr
 import { VendreProduitComponent } from './components/vendre-produit/vendre-produit.component';
 import { MonPanierComponent } from './components/mon-panier/mon-panier.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GraphQLModule } from './shared/modules/graphql.module';
+import { NavComponent } from './components/nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AcheterProduitComponent,
     VendreProduitComponent,
     MonPanierComponent,
+    NavComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
@@ -45,6 +48,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    GraphQLModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

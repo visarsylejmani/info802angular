@@ -9,13 +9,13 @@
         <form [formGroup]="SignInForm" (ngSubmit)="onSignIn()">
           <div class="mb-3">
             <label for="inputEmail" class="form-label">Email</label>
-            <input type="email" class="form-control" formControlName="inputEmail" id="inputEmail" required minlength="4">
+            <input type="email" class="form-control" formControlName="inputEmail" id="inputEmail">
             <!--aria-describedby="emailHelp"-->
             <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
           </div>
           <div class="mb-3">
             <label for="inputPassword" class="form-label">Mot de passe</label>
-            <input type="password" class="form-control" formControlName="inputPassword" id="inputPassword" required minlength="4">
+            <input type="password" class="form-control" formControlName="inputPassword" id="inputPassword">
           </div>
           <div class="mb-3">
             <span class="link-primary" routerLink="/forgot-password">Mot de passe oublié?</span>
@@ -24,10 +24,10 @@
           <input type="checkbox" class="form-check-input" id="check">
           <label class="form-check-label" for="check">Rester connecter</label>
         </div>-->
-          <button type="submit" class="btn btn-primary" >Se connecter</button>
+          <button type="submit" class="btn btn-primary">Se connecter</button>
         </form>
         <div class="mb-3">
-            <span>Je n'ai pas de compte?<span class="link-primary" routerLink="/register-user"> S'inscrire</span></span>
+            <span>Je n'ai pas de compte?<span class="link-primary" routerLink="/register-user">S'inscrire</span></span>
         </div>
       </div>
     </div>

@@ -3,6 +3,28 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { PanierService } from 'src/app/shared/services/panier.service';
 import { Product } from 'src/app/shared/services/product';
+import { Apollo ,gql} from 'apollo-angular';
+import { Observable } from 'rxjs';
+import {map} from 'rxjs/operators';
+import { Produit, AllProduitsGQLService } from 'src/app/shared/services/all-produits-gql.service';
+
+
+
+
+
+
+const GET_PRODUITS = gql`
+{
+  produits
+  {
+          produitID,
+          nom,
+          longitude,
+          latitude,
+  }
+}
+`;
+
 
 @Component({
   selector: 'app-acheter-produit',
@@ -11,15 +33,31 @@ import { Product } from 'src/app/shared/services/product';
 })
 export class AcheterProduitComponent implements OnInit {
   public productList = new Array<Product>();
+
+  loading: boolean;
+  produits: Observable<Produit[]>;
+
+
+
   constructor(
     public authService:AuthService,
     public afs: AngularFirestore,
     public panier:PanierService,
+    private apollo: Apollo,
+    private allProduitsGQL: AllProduitsGQLService
     ) { }
 
-  ngOnInit(): void {
-    this.GetData()
-  }
+    ngOnInit() {
+      this.GetData();
+      this.produits = this.allProduitsGQL.watch()
+      .valueChanges
+      .pipe(
+        map(result => result.data.produits)
+      );
+    }
+  
+    ngOnDestroy() {
+    }
 
   async GetData(){
     const docs =  this.afs.collection("products");
