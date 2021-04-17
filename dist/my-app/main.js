@@ -1013,45 +1013,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var apollo_angular__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! apollo-angular */ "/IUn");
 /* harmony import */ var _apollo_client_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @apollo/client/core */ "ALmS");
 /* harmony import */ var apollo_angular_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! apollo-angular/http */ "E21e");
-/* harmony import */ var _apollo_client_link_context__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @apollo/client/link/context */ "MWEN");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ "fXoL");
-
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "fXoL");
 
 
 
 
 const uri = 'https://graphqlinfo802.azurewebsites.net/api'; // <-- add the URL of the GraphQL server here
-const httpLink = Object(_apollo_client_core__WEBPACK_IMPORTED_MODULE_1__["createHttpLink"])({
-    uri: uri,
-});
-const headers = {
-    'Origin': '*',
-    'Access-Control-Allow-Origin': 'https://info802.visarsylejmani.com/'
-};
 const enchancedFetch = (url, init) => {
-    return fetch(url, Object.assign(Object.assign({}, init), { headers: Object.assign(Object.assign({}, init.headers), { 'Access-Control-Allow-Origin': '*' }) })).then(response => response);
+    return fetch(url, Object.assign(Object.assign({}, init), { headers: Object.assign(Object.assign({}, init.headers), { 'Access-Control-Allow-Origin': 'https://info802.visarsylejmani.com/' }) })).then(response => response);
 };
-const link = Object(_apollo_client_link_context__WEBPACK_IMPORTED_MODULE_3__["setContext"])(() => {
-    return {
-        credentials: 'include',
-        fetchOptions: {
-            mode: 'cors'
-        },
-        headers: headers,
-        fetch: enchancedFetch,
-    };
+const httpLink = Object(_apollo_client_core__WEBPACK_IMPORTED_MODULE_1__["createHttpLink"])({
+    uri,
+    credentials: 'include',
+    fetchOptions: {
+        mode: 'cors',
+    },
+    fetch: enchancedFetch,
 });
 function createApollo() {
     return {
-        link: link.concat(httpLink),
+        link: httpLink,
         cache: new _apollo_client_core__WEBPACK_IMPORTED_MODULE_1__["InMemoryCache"]()
     };
 }
 class GraphQLModule {
 }
 GraphQLModule.ɵfac = function GraphQLModule_Factory(t) { return new (t || GraphQLModule)(); };
-GraphQLModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineNgModule"]({ type: GraphQLModule });
-GraphQLModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjector"]({ providers: [
+GraphQLModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineNgModule"]({ type: GraphQLModule });
+GraphQLModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineInjector"]({ providers: [
         {
             provide: apollo_angular__WEBPACK_IMPORTED_MODULE_0__["APOLLO_OPTIONS"],
             useFactory: createApollo,
