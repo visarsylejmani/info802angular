@@ -14,12 +14,13 @@
         (click)="panier.supprimer(produit.uid)">Supprimer</button>
     </div>
   </div>
-  <div class="col-md-12" *ngIf="panier.total as prix">
-    <h5>Prix total: {{prix}}</h5>
+  <div id="AlertForAll"></div>
+  <div class="col-md-12" *ngIf="!vide()">
+    <h5 *ngIf="panier.total as prix">Prix total: {{prix}}</h5>
   </div>
   <div class="col-md-12" *ngIf="!vide()">
     <h5>Prix de livraison: <span id="ResponseFromSoap"></span></h5>
-    <button type="button" class="btn btn-primary" (click)="prixDeLivraison()"> Calculer</button>
+    <button type="button" class="btn btn-primary" (click)="prixDeLivraison()">Calculer</button>
   </div>
 
   <div class="col-md-12" *ngIf="!vide()">
