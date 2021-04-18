@@ -68,6 +68,7 @@ export class MonPanierComponent implements OnInit {
      this.clientApi.commande(commande).then(()=>{
       divRes.className ="alert alert-success";
       divRes.innerHTML = "Payment Réussi"
+      this.panier.mesProduits = new Array<Product>();
      }).catch((err)=>{
       divRes.className ="alert alert-danger";
       divRes.innerHTML = "Payment Echoué"
