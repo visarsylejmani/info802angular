@@ -2,8 +2,9 @@ export interface Product {
     uid: string;
     nom: string;
     description: string;
-    prix: string;
-    poids: string;
+    prix: number;
+    poids: number;
+    longitude: number;
+    latitude: number;
     vendeur: string;
-
 }

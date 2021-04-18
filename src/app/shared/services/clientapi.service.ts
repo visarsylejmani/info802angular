@@ -62,7 +62,7 @@ export class ClientAPI {
      * @param body (optional) 
      * @return Success
      */
-    compteEnBanque(body: CompteEnBanqueAjouter | undefined): Promise<CompteEnBanque> {
+    compteEnBanque(body: CompteEnBanque | undefined): Promise<CompteEnBanque> {
         let url_ = this.baseUrl + "/api/CompteEnBanque";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -385,50 +385,6 @@ export class CompteEnBanque implements ICompteEnBanque {
 
 export interface ICompteEnBanque {
     id?: string | undefined;
-    nom?: string | undefined;
-    numeroCompte?: string | undefined;
-    argent?: number;
-}
-
-export class CompteEnBanqueAjouter implements ICompteEnBanqueAjouter {
-    nom?: string | undefined;
-    numeroCompte?: string | undefined;
-    argent?: number;
-
-    constructor(data?: ICompteEnBanqueAjouter) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.nom = _data["nom"];
-            this.numeroCompte = _data["numeroCompte"];
-            this.argent = _data["argent"];
-        }
-    }
-
-    static fromJS(data: any): CompteEnBanqueAjouter {
-        data = typeof data === 'object' ? data : {};
-        let result = new CompteEnBanqueAjouter();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["nom"] = this.nom;
-        data["numeroCompte"] = this.numeroCompte;
-        data["argent"] = this.argent;
-        return data; 
-    }
-}
-
-export interface ICompteEnBanqueAjouter {
     nom?: string | undefined;
     numeroCompte?: string | undefined;
     argent?: number;

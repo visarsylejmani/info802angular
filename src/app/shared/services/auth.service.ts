@@ -33,7 +33,7 @@ export class AuthService {
   
 
   // Sign in with email/password
-  SignIn(email, password) {
+  async SignIn(email, password) {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         this.SetUserData(result.user);
@@ -44,7 +44,7 @@ export class AuthService {
   }
 
   // Sign up with email/password
-  SignUp(name, email, password) {
+  async SignUp(name, email, password) {
     return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
         result.user.updateProfile({
@@ -61,7 +61,7 @@ export class AuthService {
   }
 
   // Send email verfificaiton when new user sign up
-  SendVerificationMail() {
+  async SendVerificationMail() {
     return this.afAuth.currentUser
     .then((user) => {
       user.sendEmailVerification()
@@ -70,7 +70,7 @@ export class AuthService {
   }
 
   // Reset Forggot password
-  ForgotPassword(passwordResetEmail) {
+  async ForgotPassword(passwordResetEmail) {
     return this.afAuth.sendPasswordResetEmail(passwordResetEmail)
     .then(() => {
       window.alert('Password reset email sent, check your inbox.');
@@ -94,7 +94,7 @@ export class AuthService {
   }
 
   // Auth logic to run auth providers
-  AuthLogin(provider) {
+  async AuthLogin(provider:any) {
     return this.afAuth.signInWithPopup(provider)
     .then((result) => {
        this.ngZone.run(() => {
@@ -124,7 +124,7 @@ export class AuthService {
   }
 
   // Sign out 
-  SignOut() {
+  async SignOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
       this.router.navigate(['sign-in']);

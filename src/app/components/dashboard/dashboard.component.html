@@ -4,12 +4,34 @@
   <div class="row" *ngIf="authService.userData as user">
     <div class="col-md-12">
       <div class="media-body">
-        <img src={{user.photoURL}}>
-        <h1><strong>{{user.photoURL}}</strong></h1>
         <h1><strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h1>
         <p>User ID: <strong>{{user.uid}}</strong></p>
         <p>Email: <strong>{{user.email}}</strong></p>
         <p>Email Verified: <strong>{{user.emailVerified}}</strong></p>
+        <div *ngIf="userService.adresse2 as add">
+          <p><strong>Adresse: </strong></p>
+          <p>Longitude : {{add.longitude}}</p>
+          <p>Latitude : {{add.latitude}} </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="media-body">
+        <form [formGroup]="AdresseForm" (ngSubmit)="onChangeAdresse()">
+          <div class="mb-3">
+            <label for="inputLongitude" class="form-label">Longitude</label>
+            <input type="number" class="form-control" formControlName="inputLongitude" id="inputLongitude">
+            <!--aria-describedby="emailHelp"-->
+            <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
+          </div>
+          <div class="mb-3">
+            <label for="inputLatitude" class="form-label">Latitude</label>
+            <input type="number" class="form-control" formControlName="inputLatitude" id="inputLatitude">
+          </div>
+          <button type="submit" class="btn btn-primary">Changer</button>
+        </form>
       </div>
     </div>
   </div>

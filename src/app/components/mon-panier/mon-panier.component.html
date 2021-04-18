@@ -1,15 +1,43 @@
 <app-nav></app-nav>
 <!-- Sidebar navigation -->
 <div class="container">
-  <div class="row">
-    <div class="col-md-12 bg-secondary rounded m-1 text-light" *ngFor="let product of monPanier ">
-      <h5>{{ product.nom }} <span class="float-right">prix :{{ product.prix }}€</span></h5>
-    </div>
-    <div class="col-md-12" *ngIf="!vide()">
-      <button type="button" class="btn btn-primary float-right" (click)="acheter()">Acheter</button>
-    </div>
-    <div class="col-md-12" *ngIf="vide()">
-      <p>Aucun produit dans votre panier</p>
+  <div class="col-md-12" *ngIf="vide()">
+    <p>Aucun produit dans votre panier</p>
+  </div>
+  <div class="card" *ngFor="let produit of panier.mesProduits">
+    <div class="card-body">
+      <h5 class="card-title">{{produit.nom}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">Prix : {{produit.prix}}€</h6>
+      <h6 class="card-subtitle mb-2 text-muted">Poids : {{produit.poids}}kg</h6>
+      <p class="card-text">{{produit.description}}</p>
+      <button type="button" class="btn btn-danger float-right"
+        (click)="panier.supprimer(produit.uid)">Supprimer</button>
     </div>
   </div>
+  <div class="col-md-12" *ngIf="panier.total as prix">
+    <h5>Prix total: {{prix}}</h5>
+  </div>
+  <div class="col-md-12" *ngIf="!vide()">
+    <h5>Prix de livraison: <span id="ResponseFromSoap"></span></h5>
+    <button type="button" class="btn btn-primary" (click)="prixDeLivraison()"> Calculer</button>
+  </div>
+
+  <div class="col-md-12" *ngIf="!vide()">
+    <h2>Votre carte:</h2>
+    <form [formGroup]="CarteBanqueForm" (ngSubmit)="verifierCarteBanque()">
+      <div class="form-group">
+        <label for="labelNumero">Numero de carte</label>
+        <input type="text" class="form-control" id="labelNumero" formControlName="numero"
+          placeholder="Ex: 5152535456575859">
+      </div>
+      <button type="submit" class="btn btn-primary">Verifier</button>
+      <div id="ResponseFromServer"></div>
+    </form>
+  </div>
+  <div class="col-md-12" *ngIf="!vide()">
+    <button type="button" id="buttonAcheter" class="invisible btn btn-success" (click)="acheter()">Acheter</button>
+    <div id="ResponseAchat"></div>
+  </div>
+  
+
 </div>

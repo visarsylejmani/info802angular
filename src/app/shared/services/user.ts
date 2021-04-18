@@ -5,3 +5,9 @@ export interface User {
     photoURL: string;
     emailVerified: boolean;
  }
+
+ export interface Adresse {
+    uid: string;
+    longitude:number;
+    latitude:number;
+ }

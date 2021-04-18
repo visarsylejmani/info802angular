@@ -3,26 +3,34 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <form>
+      <form [formGroup]="VendreForm" (ngSubmit)="onVendre()">
         <div class="form-group">
           <label for="labelNom">Nom du produit</label>
-          <input type="text" class="form-control" id="labelNom" placeholder="Ex: Pomme" #labelNom required>
+          <input type="text" class="form-control" id="labelNom"  formControlName="nom" placeholder="Ex: Pomme">
         </div>
         <div class="form-group">
           <label for="labelPoids">Poids en kg</label>
-          <input type="text" class="form-control" id="labelPoids" placeholder="Ex: 4 pour 4kg, 0.4 pour 400g" #labelPoids required>
+          <input type="text" class="form-control" id="labelPoids" formControlName="poids"  placeholder="Ex: 4 pour 4kg, 0.4 pour 400g" #labelPoids required>
         </div>
         <div class="form-group">
           <label for="labelPrix">Prix</label>
-          <input type="text" class="form-control" id="labelPrix" placeholder="Ex: 4.58 pour 4 euros et 58 cents" #labelPrix required>
+          <input type="text" class="form-control" id="labelPrix" formControlName="prix"  placeholder="Ex: 4.58 pour 4 euros et 58 cents" #labelPrix required>
         </div>
         <div class="form-group">
           <label for="textareaDescription">Description</label>
-          <textarea class="form-control" id="textareaDescription" rows="3" placeholder="Ex: Magnifique pomme verte." #textareaDescription required></textarea>
+          <textarea class="form-control" id="textareaDescription" rows="3" formControlName="description"  placeholder="Ex: Magnifique pomme verte." #textareaDescription required></textarea>
         </div>
-        <button type="button" class="btn btn-primary" (click)="SetProductData(textareaDescription.value,labelNom.value,labelPoids.value,labelPrix.value)">Vendre</button>
+        <button type="submit" class="btn btn-primary">Vendre</button>
       </form>
     </div>
-    
+  </div>
+  <div class="card" *ngFor="let produit of productList | async">
+    <div class="card-body">
+      <h5 class="card-title">{{produit.nom}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">Prix : {{produit.prix}}€</h6>
+      <h6 class="card-subtitle mb-2 text-muted">Poids : {{produit.poids}}kg</h6>
+      <p class="card-text">{{produit.description}}</p>
+      <button type="button" class="btn btn-danger float-right" (click)="DeleteProduct(produit.uid)">Supprimer</button>
+    </div>
   </div>
 </div>

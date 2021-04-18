@@ -29,13 +29,13 @@ const GET_PRODUITS = gql`
 @Component({
   selector: 'app-acheter-produit',
   templateUrl: './acheter-produit.component.html',
-  styleUrls: ['./acheter-produit.component.scss']
+  styleUrls: []
 })
 export class AcheterProduitComponent implements OnInit {
-  public productList = new Array<Product>();
+  productList:  Observable<any[]>;
 
   loading: boolean;
-  produits: Observable<Produit[]>;
+  produits: Observable<any[]>;
 
 
 
@@ -49,27 +49,23 @@ export class AcheterProduitComponent implements OnInit {
 
     ngOnInit() {
       this.GetData();
-      this.produits = this.allProduitsGQL.watch()
-      .valueChanges
-      .pipe(
-        map(result => result.data.produits)
-      );
     }
   
     ngOnDestroy() {
     }
 
   async GetData(){
-    const docs =  this.afs.collection("products");
-    const products = await docs.get();
-    console.log(products.subscribe(r=>{
-      r.forEach(e=>{
-         this.productList.push(<Product>e.data());
-      })
-    }))
-    console.log(this.productList)
+    const myUID = await this.authService.userData.uid;
+    const docs =  this.afs.collection("products",ref =>
+    ref.where("vendeur", "!=", myUID));
+    this.productList = docs.get().pipe(map((item) => {
+      return item.docs.map((dataItem) => dataItem.data());
+    }));
   }
-  ajouterPanier(product){
+  ajouterPanier(product:Product){
     this.panier.ajouter(product);
+  }
+  supprimerPanier(product:Product){
+    this.panier.supprimer(product);
   }
 }

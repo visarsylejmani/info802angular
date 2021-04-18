@@ -1,20 +1,13 @@
 <app-nav></app-nav>
 <!-- Sidebar navigation -->
 <div class="container">
-  <div class="row">
-    <table>
-      <thead>
-        <th>Uid</th>
-        <th>Nom</th>
-        <th>Poids</th>
-      </thead>
-      <tbody>
-          <tr *ngFor="let produit of produits | async">
-            <td>{{produit.uid}}</td>
-            <td>{{produit.nom}}</td>
-            <td>{{produit.poids}}</td>
-          </tr>
-      </tbody>
-  </table>
+  <div class="card" *ngFor="let produit of productList | async">
+    <div class="card-body">
+      <h5 class="card-title">{{produit.nom}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">Prix : {{produit.prix}}€</h6>
+      <h6 class="card-subtitle mb-2 text-muted">Poids : {{produit.poids}}kg</h6>
+      <p class="card-text">{{produit.description}}</p>
+      <button type="button" class="btn btn-primary float-right" (click)="ajouterPanier(produit)">Acheter</button>
+    </div>
   </div>
 </div>
